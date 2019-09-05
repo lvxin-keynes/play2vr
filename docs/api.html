@@ -1,0 +1,309 @@
+<!DOCTYPE HTML> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>play2VR Javascript API</title>
+<style>
+	* {font-family: "SourceHanSansSC-Regular","Open Sans","Lucida Grande",Helvetica,STheiti,Verdana,"microsoft yahei","simsun",Geneva,sans-serif;}
+	body {color:#555; font-size:15px; line-height:18px; padding-left:20px}
+	a {color:#1184CE}
+	h1 {color:#333;font-size:25px;font-weight:normal;margin-top:10px}
+	h2 {color:#480;font-size:18px;font-weight:normal;margin-top:40px}
+	h3 {color:#000;font-size:16px;font-weight:normal;margin-top:30px}
+	div {margin-bottom:20px}
+	.desc {padding-left:0; margin-bottom:20px}
+</style> 
+</head>
+<body>
+	<h1>play2VR</h1>
+	<div class="desc">Javascript全局对象, 网页需先接入play2VR.js（请参考play2VR控制台->视频管理->视频编缉->接入代码）</div>
+	<a name="playerFunction"></a>
+	<h2>播放器方法</h2>
+	<h3>
+		.<a href="javascript:void">init</a>(
+		<a href="javascript:void">container</a>
+		, 
+		<a href="javascript:void">key</a>
+		) 
+	</h3>
+	<div>
+		初始化播放器, 播放器会在容器位置出现并替换容器内容
+	</div>
+	<div>
+		--
+		<a href="javascript:void">container</a>
+		(必填)播放器的容器元素
+		<br>
+		--
+		<a href="javascript:void">key</a>
+		(必填)视频key（请参考play2VR控制台->视频管理->视频上传）
+		<br>
+	</div>
+	<a name="dispose"></a>
+	<h3>
+		.<a href="javascript:void">dispose</a>() 
+	</h3>
+	<div>
+		销毁播放器,并恢复容器原来的内容
+	</div>
+	<h3>
+		.<a href="javascript:void">getDiv</a>() 
+	</h3>
+	<div>
+		返回容器元素
+	</div>	
+	<h3>
+		.<a href="javascript:void">getMedia</a>() 
+	</h3>
+	<div>
+		返回封装后的媒体对象
+	</div>	
+	<a name="on"></a>	
+	<h3>
+		.<a href="javascript:void">on</a>(
+		<a href="javascript:void">eventName</a>
+		, 
+		<a href="javascript:void">callback</a>
+		)  
+	</h3>
+	<div>
+		监听<a href="#events">播放器事件</a>（注意：在.<a href="#dispose">dispose</a>()之后所有绑定的事件监听即失效，新视频初始化后需要重新绑定）
+	</div>	
+	<div>
+		--
+		<a href="javascript:void">eventName</a>
+		(必填)事件名称
+		<br>
+		--
+		<a href="javascript:void">callback</a>
+		(必填)回调函数
+		<br>
+	</div>		
+	<h3>
+		.<a href="javascript:void">off</a>(
+		<a href="javascript:void">eventName</a>
+		, 
+		<a href="javascript:void">callback</a>
+		)   
+	</h3>
+	<div>
+		取消监听<a href="#events">播放器事件</a>
+	</div>
+	<div>
+		--
+		<a href="javascript:void">eventName</a>
+		(必填)事件名称
+		<br>
+		--
+		<a href="javascript:void">callback</a>
+		(必填)回调函数
+		<br>
+	</div>	
+	<h3>
+		.<a href="javascript:void">toggleVR</a>(
+		<a href="javascript:void">vr</a>
+		)   
+	</h3>			
+	<div>
+		切换VR模式
+	</div>
+	<div>
+		--
+		<a href="javascript:void">vr</a>
+		(可选)true/false, 不填自动切换状态
+		<br>
+	</div>
+	<h3>
+		.<a href="javascript:void">toggleGyro</a>(
+		<a href="javascript:void">gyro</a>
+		)   
+	</h3>			
+	<div>
+		切换启用陀螺仪传感器
+	</div>
+	<div>
+		--
+		<a href="javascript:void">gyro</a>
+		(可选)true/false, 不填自动切换状态
+		<br>
+	</div>	
+	<h3>
+		.<a href="javascript:void">toggleFullscreen</a>(
+		<a href="javascript:void">fullscreen</a>
+		)   
+	</h3>			
+	<div>
+		切换全屏播放
+	</div>
+	<div>
+		--
+		<a href="javascript:void">fullscreen</a>
+		(可选)true/false, 不填自动切换状态
+		<br>
+	</div>	
+	<h3>
+		.<a href="javascript:void">toggleMessage</a>(
+		<a href="javascript:void">message</a>
+		)   
+	</h3>			
+	<div>
+		切换播放器自带的消息动画（加载/播放/暂停）
+	</div>
+	<div>
+		--
+		<a href="javascript:void">message</a>
+		(可选)true/false, 不填自动切换状态
+		<br>
+	</div>	
+	<h3>
+		.<a href="javascript:void">play</a>()   
+	</h3>			
+	<div>
+		播放视频
+	</div>
+	<h3>
+		.<a href="javascript:void">pause</a>()   
+	</h3>			
+	<div>
+		暂停视频
+	</div>	
+	<h2>视频交互方法</h2>
+	<h3>
+		.<a href="javascript:void">addCuePoint</a>(
+		<a href="javascript:void">name</a>
+		,
+		<a href="javascript:void">time</a>
+		)   
+	</h3>			
+	<div>
+		添加视频时间事件, 自定义视频时间事件可以使用.<a href="#on">on</a>()来监听
+	</div>
+	<div>
+		--
+		<a href="javascript:void">name</a>
+		(必填)事件名称
+		<br>
+		--
+		<a href="javascript:void">time</a>
+		(必填)事件时间, 视频播放的进度条秒数
+		<br>
+	</div>		
+	<h3>
+		.<a href="javascript:void">removeCuePoint</a>(
+		<a href="javascript:void">name</a>
+		)   
+	</h3>			
+	<div>
+		删除视频时间事件
+	</div>
+	<div>
+		--
+		<a href="javascript:void">name</a>
+		(可选)事件名称, 不填删除所有视频时间事件
+		<br>
+	</div>	
+	<h3>
+		.<a href="javascript:void">addHotSpot</a>(
+		<a href="javascript:void">name</a>
+		,
+		<a href="javascript:void">options</a>
+		)   
+	</h3>			
+	<div>
+		添加视频热点, 可交互的视频热点可以使用.<a href="#on">on</a>()来监听
+	</div>
+	<div>
+		--
+		<a href="javascript:void">name</a>
+		(必填)热点名称
+		<br>
+		--
+		<a href="javascript:void">options</a>
+		(必填)热点参数对象, {image: 图片网址或画布, pos: 三维向量数组, interactive: 是否可交互}
+		<br>		
+	</div>		
+	<h3>
+		.<a href="javascript:void">removeHotSpot</a>(
+		<a href="javascript:void">name</a>
+		)   
+	</h3>			
+	<div>
+		删除视频热点
+	</div>
+	<div>
+		--
+		<a href="javascript:void">name</a>
+		(必填)热点名称
+		<br>
+	</div>	
+	<h3>
+		.<a href="javascript:void">getHotSpotByName</a>(
+		<a href="javascript:void">name</a>
+		)   
+	</h3>			
+	<div>
+		返回名字相符的视频热点对象, 可以进一步显示或隐藏热点对象
+	</div>
+	<div>
+		--
+		<a href="javascript:void">name</a>
+		(必填)热点名称
+		<br>
+	</div>		
+	<blockquote>
+	<h3>视频热点对象方法</h3>
+	<h3>
+		.<a href="javascript:void">show</a>()   
+	</h3>			
+	<div>
+		显示视频热点
+	</div>		
+	<h3>
+		.<a href="javascript:void">hide</a>()   
+	</h3>			
+	<div>
+		隐藏视频热点
+	</div>	
+	<h3>
+		.<a href="javascript:void">updateImage</a>()   
+	</h3>			
+	<div>
+		更新视频热点贴图,画布绘制后调用
+	</div>
+	</blockquote>		
+	<a name="events"></a>
+	<h2>播放器事件</h2>
+	<div>
+		<h3><a href="javascript:void">load</a>
+		播放器初始化完成事件,监听到此事件之后方可调用<a href="#playerFunction">播放器方法</a>
+		</h3>
+		<h3><a href="javascript:void">dispose</a>
+		播放器销毁事件
+		</h3>		
+		<h3><a href="javascript:void">loadskin</a>
+		播放器皮肤初始化完成事件
+		</h3>
+		<h3><a href="javascript:void">play</a>
+		播放事件,事件参数是currentTime
+		</h3>
+		<h3><a href="javascript:void">pause</a>
+		暂停事件,事件参数是currentTime
+		</h3>		
+		<h3><a href="javascript:void">toggleVR</a>
+		切换VR事件
+		</h3>			
+		<h3><a href="javascript:void">toggleGyro</a>
+		切换启用陀螺仪事件
+		</h3>				
+		<h3><a href="javascript:void">toggleFullscreen</a>
+		切换全屏事件
+		</h3>				
+		<h3><a href="javascript:void">toggleMessage</a>
+		切换播放器自带的消息动画（加载/播放/暂停）事件
+		</h3>
+		<h3><a href="javascript:void">orientationchange</a>
+		横屏,竖屏播放事件, 事件参数是屏幕方向: landscape/portrait
+		</h3>		
+	</div>		
+</body>
+</html>

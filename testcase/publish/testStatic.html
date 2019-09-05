@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 		
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">      
+	    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	    <title>play2VR静态接入测试</title> 	
+	</head>
+	<body>
+		<div>
+			<label for="chooseVersion">选择测试媒体</label>
+			<select id="chooseVersion" onChange="changeVideo(this.value)">
+				<option value=''>选择测试媒体</option>
+				<option value="5864449845a0d174557cfa">视频-无皮肤</option>
+				<option value="333700345a0d17df258fd">视频-皮肤</option>
+				<option value="9885229595a0d185fefee1">视频-横幅无皮肤</option>
+				<option value="663898555a0d19423c8bb">视频-横幅皮肤</option>
+				<option value="9373168165a0d1d6c8a9fc">图片-无动画</option>
+				<option value="17709194315a0d1d9457e23">图片-动画和点击动作</option>
+			</select>
+		</div>
+		<div id="videoContainer" style="width: 400px; height: 300px">	
+		</div>
+		<script>
+			function changeVideo(key) 
+			{
+				var container = document.querySelector('#videoContainer');
+				container.innerHTML = '';
+				
+				if (typeof play2VR != 'undefined')
+				{
+					play2VR.dispose();
+					window.play2VR = undefined;				
+				}
+				
+				if (key == '') return;
+				
+				var div = document.createElement('div');
+				div.setAttribute('play2vr', key);
+				div.setAttribute('style', 'background-image:url(//v2.play2vr.com/poster/'+key+'-poster.png);width:400px;height:300px')
+				container.appendChild(div);
+				
+				var script = document.createElement('script');
+				script.setAttribute('src', '//v2.play2vr.com/js/play2VR.js');
+				container.appendChild(script); 
+			}	
+		</script>
+	</body>
+</html>

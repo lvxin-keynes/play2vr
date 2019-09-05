@@ -1,0 +1,106 @@
+<!DOCTYPE HTML> 
+<html> 
+	<head> 
+		<meta charset="utf-8"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">		
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">	
+		<title>play2VR API测试</title> 		
+	</head> 
+	<body>
+		<div>
+			<label for="chooseVersion">选择测试媒体</label>
+			<select id="chooseVersion" onChange="play2VR.dispose()">
+				<option value=''>选择测试媒体</option>
+				<option value="5864449845a0d174557cfa">视频-无皮肤</option>
+				<option value="333700345a0d17df258fd">视频-皮肤</option>
+				<option value="9885229595a0d185fefee1">视频-横幅无皮肤</option>
+				<option value="663898555a0d19423c8bb">视频-横幅皮肤</option>
+				<option value="9373168165a0d1d6c8a9fc">图片-无动画</option>
+				<option value="17709194315a0d1d9457e23">图片-动画和点击动作</option>
+				<option value="19101905025ac47ce167ffb">码率切换影片</option>
+			</select>
+			<select id="chooseBitrate" onChange="play2VR.switchBitrateFormat(this.value);">				
+			</select>
+		</div>	
+		<div id="container" style="width:480px; height:240px; overflow:hidden"></div>
+		<div>
+			<button onClick="init();">.init()</button>
+			<button onClick="init({basic: true});">.init(...{basic:true})</button>
+			<button onClick="play2VR.dispose()">.dispose()</button>
+			<button onClick="play2VR.play()">.play()</button>
+			<button onClick="play2VR.pause()">.pause()</button>
+			<button onClick="play2VR.toggleVR()">.toggleVR()</button>
+			<button onClick="play2VR.toggleGyro()">.toggleGyro()</button>
+			<button onClick="play2VR.toggleFullscreen()">.toggleFullscreen()</button>		
+			<button onClick="play2VR.toggleMessage()">.toggleMessage()</button>
+			<!-- TODO: make this works in CORS mode -->
+			<!--<button onClick="play2VR.getMedia().loop = !play2VR.getMedia().loop; console.log('loop:' + play2VR.getMedia().loop )">toggleLoop</button>-->
+			<button onClick="console && console.log(play2VR.getDiv())">.getDiv()</button>
+			<button onClick="console && console.log(play2VR.getMedia())">.getMedia()</button>
+		</div>		
+		<h3><a href="https://console.play2vr.com/customer/develop" target="_blank">play2VR API</a></h3>
+		<p style="font-size:85%">提示: 打开浏览器控制台查看事件日志</p>
+		<!--<script src="//v2.play2vr.com/js/play2VR.js"></script>-->
+		<!--<script src="//v2.play2VR.com/js/staging/transcode/play2VR.js"></script>-->
+		<script src="/js/play2VR.js"></script>
+		<script>						
+			function bindEvents()
+			{
+				var events = ['load', 'dispose', 'loadskin', 'canplay', 'play', 'pause', 'toggleVR', 
+							'toggleGyro', 'toggleFullscreen', 'toggleMessage', 'orientationchange', 'buffering', 'switchBitrateFormat'];
+							
+				function eventListener(type)
+				{
+					return function(e)
+					{
+						console && console.log(type + (e ? ':' + e : ''));
+					}
+				}			
+			
+				for (var ev in events)
+				{
+					play2VR.on(events[ev], eventListener(events[ev]));
+				}			
+			}
+			
+			function addBitrates()
+			{
+				var bitratesSelect = document.querySelector('#chooseBitrate');
+				while (bitratesSelect.options.length) bitratesSelect.remove(0);
+			
+				play2VR.getBitratesFormats().then(function(bitratesFormats){
+					var bitrates = bitratesFormats.bitrates;
+					for (var i=0; i<bitrates.length; i++)
+					{
+						var option = document.createElement('option');
+						option.innerHTML = bitrates[i];
+						option.setAttribute('value', bitrates[i]);
+						if (bitrates[i] == bitratesFormats.bitrate)
+							option.setAttribute('selected', '');
+						bitratesSelect.appendChild(option);
+					}	
+					
+					console.log('current bitrate: ' + bitratesFormats.bitrate);
+					console.log('current format: ' + bitratesFormats.format);				
+				});
+			}
+			
+			function init(options)
+			{
+				play2VR.dispose();
+				
+				var key = document.querySelector('#chooseVersion').value;
+				if (key == '') return;
+				
+				var container = document.querySelector('#container');
+				
+				options = options || {debug: true};
+				
+				play2VR.init(container, key, options);	
+				bindEvents();	
+				play2VR.on('load', addBitrates);		
+			}
+						
+		</script>
+	</body>
+</html>

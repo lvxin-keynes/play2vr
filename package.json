@@ -1,0 +1,31 @@
+{
+  "name": "play2VR",
+  "version": "1.0.0",
+  "description": "play2VR播放器前端代码,基于gl-matrix, webvr-polyfill ",
+  "author": "2278083193@qq.com",
+  "license": "WTFPL",
+  "dependencies": {
+    "browserify": "latest",
+    "uglifyjs": "latest",
+    "uglify-js": "latest",
+    "derequire": "latest",    
+    "watchify": "latest",
+    "bundle-collapser": "latest",
+    
+    "gl-matrix": "latest",
+    "gl-mat4": "latest",
+    "@hughsk/fulltilt": "latest"
+  },
+  "scripts": {
+  	"build-mangle": "browserify ../js/src/vrvideo.js | bundle-collapser | node mangle | uglifyjs -mc --mangle-props --mangle-regex=\"/^_/\" | node pre > ../js/play2VR.js",
+	  "mangle": "browserify ../js/src/vrvideo.js | bundle-collapser | node mangle > ../js/play2VR.js",  	
+    "build": "browserify ../js/src/vrvideo.js | bundle-collapser | uglifyjs -mc --mangle-props --mangle-regex=\"/^_/\" --preamble=\"/*! Copyright 2016-2018 Keynes Software Co.,Ltd. */\" > ../js/play2VR.js",    
+    "watch": "watchify ../js/src/vrvideo.js -o ../js/play2VR.js -dv",
+    "build-skin-default": "browserify ../js/src/skin/default.skin.js | uglifyjs -mc > ../js/default.skin.js",
+    "build-skin-flat": "browserify ../js/src/skin/flat.skin.js | uglifyjs -mc > ../js/flat.skin.js",
+    "build-skin-concise": "browserify ../js/src/skin/concise.skin.js | uglifyjs -mc > ../js/concise.skin.js",
+    "str2png": "php ./str2png/str2png.php ../js/animation/",
+    "watch-track": "watchify ../js/src/videotrack.js -o ../js/play2VRTrack.js -dv",
+    "build-track": "browserify ../js/src/videotrack.js | bundle-collapser | node mangle | uglifyjs -mc --mangle-props --mangle-regex=\"/^_/\" | node pre > ../js/play2VRTrack.js"
+  }
+}

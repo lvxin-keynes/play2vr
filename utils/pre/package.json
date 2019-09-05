@@ -1,0 +1,18 @@
+{
+  "name": "pre",
+  "version": "0.1.0",
+  "private": true,
+  "description": "add prefix & version to javascript",
+  "dependencies": {
+    "browserify": "latest",
+    "watchify": "latest",
+    "concat-stream": "^1.4.6",
+    "dateformat": "latest"    
+  },
+  "scripts": {
+    "build": "browserify index.js > bin/pre.js",    
+    "watch": "watchify index.js -o bin/pre.js -dv"
+  },
+  "author": "xin.lv@keyne-soft.com",
+  "license": "Keynes Private License"
+}
