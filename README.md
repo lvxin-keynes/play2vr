@@ -31,7 +31,7 @@
         "skin": "default",                  //皮肤, 对应.skin.js
         "type": "sphere",                   //投影模式, 2d, sphere, cube, doublesphere
         "fullScreen": false,                //是否全屏
-        "wm": false,                        //
+        "wm": false,                        //是否显示水印
         "landscapeFullscreen": false,       //横屏是否全屏
         "landscapeFullscreenVR": false,     //横屏是否全屏VR
         "track": true,                      //是否追踪播放数据
