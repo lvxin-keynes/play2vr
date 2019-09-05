@@ -49,7 +49,7 @@ function initConfig(_keyDomain, _playConfig, _timestamp, _noPoster, _callback)
 {		          
 	if (_playConfig._key.length > 0)
 	{
-		var _keyPath = _keyDomain + 'img/' + _playConfig._key + ".png?" + _timestamp;
+		var _keyPath = _keyDomain + _playConfig._key + ".png?" + _timestamp;
 		var _keyImg = new Image();
 		_keyImg.setAttribute("crossorigin", "anonymous");
 		_keyImg.addEventListener('load', function(e){

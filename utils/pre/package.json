@@ -7,10 +7,10 @@
     "browserify": "latest",
     "watchify": "latest",
     "concat-stream": "^1.4.6",
-    "dateformat": "latest"    
+    "dateformat": "latest"
   },
   "scripts": {
-    "build": "browserify index.js > bin/pre.js",    
+    "build": "browserify index.js > bin/pre.js",
     "watch": "watchify index.js -o bin/pre.js -dv"
   },
   "author": "xin.lv@keyne-soft.com",

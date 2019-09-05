@@ -1,5 +1,3 @@
-//! Copyright 2017 Digitberry Ltd. 
-//! Build time: 2018/4/13 10:00:00
 function defaultSkin(options) {
 	this.video = options.video;
 	this.api = options.api;

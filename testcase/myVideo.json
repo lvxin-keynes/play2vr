@@ -1,0 +1,19 @@
+{
+    "key": "myVideo",                   
+    "skin": "default",                  
+    "type": "sphere",                   
+    "fullScreen": false,                
+    "wm": false,                        
+    "landscapeFullscreen": false,       
+    "landscapeFullscreenVR": false,     
+    "track": true,                      
+    "enableTouch": false,               
+    "enableGyro": false,                
+    "yawOnly": false,                   
+    "loop": false,                      
+    "src": "myVideo.mp4",               
+    "status": 1,                        
+    "hotspots": null,                   
+    "poster": null,                     
+    "urls": null                        
+}
