@@ -10,14 +10,15 @@
 >支持跨域视频播放 (采用iframe和跨域通讯技术postMessage)     
 >使用png图片存储和解析视频播放设置   
 
-### 代码结构
+### 文件结构
     ├─js
     |   ├─src                            //播放器源代码(COMMONJS打包)
     |     ├─vrvideo.js                   //源代码入口    
     |   ├─play2VR.js                     //打包后的播放器代码
     |   ├─*.skin.js                      //打包后的编译器皮肤代码
     ├─docs                               //JS API文档
-    ├─img                                //生成的播放配置图片目录
+    ├─testcase                           //示例
+    |   ├─publish                        //更多示例
     ├─utils                              
     |   ├─mangle                         //js代码混淆工具,混淆字符串和原生DOM元素
     |   ├─pre                            //js代码加前缀,比如copyright信息
