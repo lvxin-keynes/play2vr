@@ -1,4 +1,6 @@
 <?php 
+//把json配置文本文件转化成png图片, 优点是数据非明文存储, 并且文件更小
+//把字符转成ascii值, 每个真彩色像素可以存储3个字符(RGB)
 function str2png($str, $imgPath)
 {
 	$charCodes = array();

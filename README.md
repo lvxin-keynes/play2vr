@@ -76,6 +76,17 @@
   3. 打包播放器皮肤 npm run build-skin-default
 ```
 
+### str2png文本转图片原理
+把字符转成ascii值, 每个真彩色像素可以存储3个字符(RGB)   
+优点是数据非明文存储, 并且文件更小   
+
+### JS代码混淆原理
+bundle-collapser: 把require路径引用变成数字   
+mangle-string文本混淆: 使用ECMAScript解析器提取所有文本, 然后混淆   
+mangle-identity网页原生元素和函数混淆:　使用赋值别名Alias替换原生名字   
+uglifyjs: 使用正则匹配（_）混淆内部变量名   
+混淆采用管道的方式，每步的输出做为下步的输入   
+
 ### 著作权
 软著登字第3018228号
 
