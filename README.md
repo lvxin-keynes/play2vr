@@ -79,6 +79,7 @@
 ### str2png文本转图片原理
 把字符转成ascii值, 每个真彩色像素可以存储3个字符(RGB)   
 优点是数据非明文存储, 并且文件更小   
+前端可以通过canvas读取像素还原文本　　　
 
 ### JS代码混淆原理
 bundle-collapser: 把require路径引用变成数字   
