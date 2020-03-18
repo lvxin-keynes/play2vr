@@ -2,7 +2,7 @@ var fs = require('fs');
 var concat = require('concat-stream');
 var dateFormat = require('dateformat');
 var pres = [
-	"//! Copyright 2019 Keynes Software Co.,Ltd. ",
+	"//! Copyright 2020 Keynes Software Co.,Ltd. ",
 	"//! Build time: " + dateFormat(new Date(), "yyyy/m/d HH:MM:ss"),
 	""
 ];

@@ -2,7 +2,9 @@ var _UA = require('./ua');
 var _DOM = require('./dom');
 
 var _nativeHLS = nativeHLS();
-var _softwareHLS = softwareHLS();
+//var _softwareHLS = softwareHLS();
+var _softwareHLS = false; 
+
 var _softwareHLSSrc = '//v2.play2vr.com/js/lib/hls.light.min.js';
 
 function getBitratesFormats(_playConfig)

@@ -45,7 +45,7 @@ var _playConfig,
 		_activateVideo: _UA._isTouchDevice || (_UA._isSafari && _UA._safariVersion >= 11),
 		_noCORS: ((_UA._isIphone && _UA._iOSVersion < 11) || _UA._isIE) ? true : false
 	},
-	_keyDomain = './';
+	_keyDomain = '//v2.play2vr.com/';
 					
 var _shader = {
 	_video: {
